@@ -42,7 +42,7 @@ public class PrimitivesComparator implements Comparator<Object> {
     public int compare(Object obj1, Object obj2) {
         if(comparableIndeed) {
             try {
-                return ((Comparable)type.get(obj1)).compareTo(type.get(obj2)) * (this.asc? 1 : -1);
+                return ((Comparable)type.get(obj1)).compareTo(type.get(obj2)) * (this.asc ? 1 : -1);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

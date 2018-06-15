@@ -16,14 +16,14 @@ public class Main {
         System.out.println("\ncompare ssn");
         Sorter.sort(personList, "ssn", "true").forEach(p -> System.out.println(p.firstName));
 
-        System.out.println("\ncompare ssn");
-        Sorter.sort(personList, "ssn", "false").forEach(p -> System.out.println(p.firstName));
-
         System.out.println("\ncompare firstName");
         Sorter.sort(personList, "firstName", "true").forEach(p -> System.out.println(p.firstName));
 
         System.out.println("\ncompare lastName");
         Sorter.sort(personList, "lastName", "true").forEach(p -> System.out.println(p.lastName));
+
+        System.out.println("\ncompare heightIn asc false");
+        Sorter.sort(personList, "heightIn", "true").forEach(p -> System.out.println(p.heightIn));
 
         System.out.println("\ncompare heightIn asc false");
         Sorter.sort(personList, "heightIn", "false").forEach(p -> System.out.println(p.heightIn));
