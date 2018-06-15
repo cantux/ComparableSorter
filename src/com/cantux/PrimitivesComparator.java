@@ -11,7 +11,7 @@ import java.util.Comparator;
 //            return a.compareTo(b);
 //        }
 //    }
-public class ComparableComparator implements Comparator<Object> {
+public class PrimitivesComparator implements Comparator<Object> {
     private static final String DATATYPE_STRING = "java.lang.String";
     private static final String DATATYPE_DATE = "java.util.Date";
     private static final String DATATYPE_INTEGER = "java.lang.Integer";
@@ -22,7 +22,7 @@ public class ComparableComparator implements Comparator<Object> {
     public boolean asc;
     public Field type;
     public boolean comparableIndeed;
-    public ComparableComparator(boolean asc, Field type) {
+    public PrimitivesComparator (boolean asc, Field type) {
         this.asc = asc;
         this.type = type;
         switch(type.getType().getName())
@@ -42,11 +42,7 @@ public class ComparableComparator implements Comparator<Object> {
     public int compare(Object obj1, Object obj2) {
         if(comparableIndeed) {
             try {
-                System.out.println("obj1: " + type.get(obj1));
-                System.out.println("obj2: " + type.get(obj2));
-                int val = ((Comparable)type.get(obj1)).compareTo(type.get(obj2)) * (this.asc? 1 : -1);
-                System.out.println(val);
-                return val;
+                return ((Comparable)type.get(obj1)).compareTo(type.get(obj2)) * (this.asc? 1 : -1);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

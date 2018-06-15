@@ -2,10 +2,8 @@ package com.cantux;
 
 import java.lang.reflect.Field;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Sorter {
-
 
     static List<Person> sort(Iterable<Person> people, String sortField,
                              String ascending){
@@ -25,29 +23,26 @@ public class Sorter {
 
         boolean asc = Boolean.valueOf(ascending);
 
+        PrimitivesComparator cc = null;
         try {
             final Field field = Person.class.getDeclaredField(sortField);
+            cc = new PrimitivesComparator(asc, field);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
 
+        if(cc != null)
+        {
             List<Person> peopleList = new ArrayList<>();
             for(Person p : people)
             {
                 peopleList.add(p);
             }
 
-
-
-
-            List<Person> sorted = peopleList.stream()
-                .sorted(new ComparableComparator(asc, field))
-                .collect(Collectors.toList());
+            // imperative with side effects but it works when it works
+            Collections.sort(peopleList, cc);
             return peopleList;
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
         }
-
-//        if(field != null)
-//        {
-
         return null;
     }
 }
